@@ -37,6 +37,7 @@ type InventoryItem struct {
 	CountryHarmonizedSystemCodes []string         `json:"country_harmonized_system_codes"`
 	HarmonizedSystemCode         *string          `json:"harmonized_system_code"`
 	ProvinceCodeOfOrigin         *string          `json:"province_code_of_origin"`
+	RequiresShipping             bool             `json:"requires_shipping"`
 }
 
 // InventoryItemResource is used for handling single item requests and responses
