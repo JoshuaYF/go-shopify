@@ -253,83 +253,100 @@ const (
 
 // Order represents a Shopify order
 type Order struct {
-	Id                       uint64                  `json:"id,omitempty"`
-	Name                     string                  `json:"name,omitempty"`
-	Email                    string                  `json:"email,omitempty"`
-	CreatedAt                *time.Time              `json:"created_at,omitempty"`
-	UpdatedAt                *time.Time              `json:"updated_at,omitempty"`
-	CancelledAt              *time.Time              `json:"cancelled_at,omitempty"`
-	ClosedAt                 *time.Time              `json:"closed_at,omitempty"`
-	ProcessedAt              *time.Time              `json:"processed_at,omitempty"`
-	Customer                 *Customer               `json:"customer,omitempty"`
-	BillingAddress           *Address                `json:"billing_address,omitempty"`
-	ShippingAddress          *Address                `json:"shipping_address,omitempty"`
-	Currency                 string                  `json:"currency,omitempty"`
-	TotalPrice               *decimal.Decimal        `json:"total_price,omitempty"`
-	TotalPriceSet            *AmountSet              `json:"total_price_set,omitempty"`
-	TotalShippingPriceSet    *AmountSet              `json:"total_shipping_price_set,omitempty"`
-	CurrentTotalPrice        *decimal.Decimal        `json:"current_total_price,omitempty"`
-	SubtotalPrice            *decimal.Decimal        `json:"subtotal_price,omitempty"`
-	CurrentSubtotalPrice     *decimal.Decimal        `json:"current_subtotal_price,omitempty"`
-	TotalDiscounts           *decimal.Decimal        `json:"total_discounts,omitempty"`
-	TotalDiscountSet         *AmountSet              `json:"total_discount_set,omitempty"`
-	CurrentTotalDiscounts    *decimal.Decimal        `json:"current_total_discounts,omitempty"`
-	CurrentTotalDiscountsSet *AmountSet              `json:"current_total_discounts_set,omitempty"`
-	TotalLineItemsPrice      *decimal.Decimal        `json:"total_line_items_price,omitempty"`
-	TaxesIncluded            bool                    `json:"taxes_included,omitempty"`
-	TotalTax                 *decimal.Decimal        `json:"total_tax,omitempty"`
-	TotalTaxSet              *AmountSet              `json:"total_tax_set,omitempty"`
-	CurrentTotalTax          *decimal.Decimal        `json:"current_total_tax,omitempty"`
-	CurrentTotalTaxSet       *AmountSet              `json:"current_total_tax_set,omitempty"`
-	TaxLines                 []TaxLine               `json:"tax_lines,omitempty"`
-	TotalWeight              int                     `json:"total_weight,omitempty"`
-	FinancialStatus          orderFinancialStatus    `json:"financial_status,omitempty"`
-	Fulfillments             []Fulfillment           `json:"fulfillments,omitempty"`
-	FulfillmentStatus        orderFulfillmentStatus  `json:"fulfillment_status,omitempty"`
-	Token                    string                  `json:"token,omitempty"`
-	CartToken                string                  `json:"cart_token,omitempty"`
-	Number                   int                     `json:"number,omitempty"`
-	OrderNumber              int                     `json:"order_number,omitempty"`
-	Note                     string                  `json:"note,omitempty"`
-	Test                     bool                    `json:"test,omitempty"`
-	BrowserIp                string                  `json:"browser_ip,omitempty"`
-	BuyerAcceptsMarketing    bool                    `json:"buyer_accepts_marketing,omitempty"`
-	CancelReason             orderCancelReason       `json:"cancel_reason,omitempty"`
-	NoteAttributes           []NoteAttribute         `json:"note_attributes,omitempty"`
-	DiscountCodes            []DiscountCode          `json:"discount_codes,omitempty"`
-	DiscountApplications     []DiscountApplication   `json:"discount_applications,omitempty"`
-	LineItems                []LineItem              `json:"line_items,omitempty"`
-	ShippingLines            []ShippingLines         `json:"shipping_lines,omitempty"`
-	Transactions             []Transaction           `json:"transactions,omitempty"`
-	AppId                    int                     `json:"app_id,omitempty"`
-	CustomerLocale           string                  `json:"customer_locale,omitempty"`
-	LandingSite              string                  `json:"landing_site,omitempty"`
-	ReferringSite            string                  `json:"referring_site,omitempty"`
-	SourceName               string                  `json:"source_name,omitempty"`
-	ClientDetails            *ClientDetails          `json:"client_details,omitempty"`
-	Tags                     string                  `json:"tags,omitempty"`
-	LocationId               uint64                  `json:"location_id,omitempty"`
-	PaymentGatewayNames      []string                `json:"payment_gateway_names,omitempty"`
-	ProcessingMethod         string                  `json:"processing_method,omitempty"`
-	Refunds                  []Refund                `json:"refunds,omitempty"`
-	UserId                   uint64                  `json:"user_id,omitempty"`
-	OrderStatusUrl           string                  `json:"order_status_url,omitempty"`
-	Gateway                  string                  `json:"gateway,omitempty"`
-	Confirmed                bool                    `json:"confirmed,omitempty"`
-	CheckoutToken            string                  `json:"checkout_token,omitempty"`
-	Reference                string                  `json:"reference,omitempty"`
-	SourceIdentifier         string                  `json:"source_identifier,omitempty"`
-	SourceURL                string                  `json:"source_url,omitempty"`
-	DeviceId                 uint64                  `json:"device_id,omitempty"`
-	Phone                    string                  `json:"phone,omitempty"`
-	LandingSiteRef           string                  `json:"landing_site_ref,omitempty"`
-	CheckoutId               uint64                  `json:"checkout_id,omitempty"`
-	ContactEmail             string                  `json:"contact_email,omitempty"`
-	Metafields               []Metafield             `json:"metafields,omitempty"`
-	SendReceipt              bool                    `json:"send_receipt,omitempty"`
-	SendFulfillmentReceipt   bool                    `json:"send_fulfillment_receipt,omitempty"`
-	PresentmentCurrency      string                  `json:"presentment_currency,omitempty"`
-	InventoryBehaviour       orderInventoryBehaviour `json:"inventory_behaviour,omitempty"`
+	Id                       uint64                  `json:"id,omitempty"`                          // key
+	Name                     string                  `json:"name,omitempty"`                        // key
+	Email                    string                  `json:"email,omitempty"`                       // no use
+	CreatedAt                *time.Time              `json:"created_at,omitempty"`                  //
+	UpdatedAt                *time.Time              `json:"updated_at,omitempty"`                  //
+	CancelledAt              *time.Time              `json:"cancelled_at,omitempty"`                //
+	ClosedAt                 *time.Time              `json:"closed_at,omitempty"`                   //
+	ProcessedAt              *time.Time              `json:"processed_at,omitempty"`                //
+	Customer                 *Customer               `json:"customer,omitempty"`                    // no use 客户信息
+	BillingAddress           *Address                `json:"billing_address,omitempty"`             // no use
+	ShippingAddress          *Address                `json:"shipping_address,omitempty"`            //
+	Currency                 string                  `json:"currency,omitempty"`                    //
+	TotalPrice               *decimal.Decimal        `json:"total_price,omitempty"`                 //
+	TotalPriceSet            *AmountSet              `json:"total_price_set,omitempty"`             //
+	TotalShippingPriceSet    *AmountSet              `json:"total_shipping_price_set,omitempty"`    //
+	CurrentTotalPrice        *decimal.Decimal        `json:"current_total_price,omitempty"`         //
+	SubtotalPrice            *decimal.Decimal        `json:"subtotal_price,omitempty"`              // no use
+	CurrentSubtotalPrice     *decimal.Decimal        `json:"current_subtotal_price,omitempty"`      //
+	TotalDiscounts           *decimal.Decimal        `json:"total_discounts,omitempty"`             //
+	TotalDiscountSet         *AmountSet              `json:"total_discount_set,omitempty"`          //
+	CurrentTotalDiscounts    *decimal.Decimal        `json:"current_total_discounts,omitempty"`     //
+	CurrentTotalDiscountsSet *AmountSet              `json:"current_total_discounts_set,omitempty"` //
+	TotalLineItemsPrice      *decimal.Decimal        `json:"total_line_items_price,omitempty"`      //
+	TaxesIncluded            bool                    `json:"taxes_included,omitempty"`              // no use
+	TotalTax                 *decimal.Decimal        `json:"total_tax,omitempty"`                   //
+	TotalTaxSet              *AmountSet              `json:"total_tax_set,omitempty"`               //
+	CurrentTotalTax          *decimal.Decimal        `json:"current_total_tax,omitempty"`           //
+	CurrentTotalTaxSet       *AmountSet              `json:"current_total_tax_set,omitempty"`       //
+	TaxLines                 []TaxLine               `json:"tax_lines,omitempty"`                   // no use 税？
+	TotalWeight              int                     `json:"total_weight,omitempty"`                // no use
+	FinancialStatus          orderFinancialStatus    `json:"financial_status,omitempty"`            // status
+	Fulfillments             []Fulfillment           `json:"fulfillments,omitempty"`                // ? 履约
+	FulfillmentStatus        orderFulfillmentStatus  `json:"fulfillment_status,omitempty"`          // status
+	Token                    string                  `json:"token,omitempty"`                       // deprecated
+	CartToken                string                  `json:"cart_token,omitempty"`                  // deprecated
+	Number                   int                     `json:"number,omitempty"`                      // no use 该店铺里的第n个订单
+	OrderNumber              int                     `json:"order_number,omitempty"`                // key 从1001开始的该店铺里的第n个订单
+	Note                     string                  `json:"note,omitempty"`                        // no use 备注
+	Test                     bool                    `json:"test,omitempty"`                        // no use
+	BrowserIp                string                  `json:"browser_ip,omitempty"`                  // no use
+	BuyerAcceptsMarketing    bool                    `json:"buyer_accepts_marketing,omitempty"`     // no use
+	CancelReason             orderCancelReason       `json:"cancel_reason,omitempty"`               //
+	NoteAttributes           []NoteAttribute         `json:"note_attributes,omitempty"`             // no use
+	DiscountCodes            []DiscountCode          `json:"discount_codes,omitempty"`              // ？折扣
+	DiscountApplications     []DiscountApplication   `json:"discount_applications,omitempty"`       // ？折扣应用
+	LineItems                []LineItem              `json:"line_items,omitempty"`                  // goods_list
+	ShippingLines            []ShippingLines         `json:"shipping_lines,omitempty"`              // 运输相关
+	Transactions             []Transaction           `json:"transactions,omitempty"`                //
+	AppId                    int                     `json:"app_id,omitempty"`                      // key
+	CustomerLocale           string                  `json:"customer_locale,omitempty"`             // no use 客户所在地
+	LandingSite              string                  `json:"landing_site,omitempty"`                // no use
+	ReferringSite            string                  `json:"referring_site,omitempty"`              // no use
+	SourceName               string                  `json:"source_name,omitempty"`                 // no use
+	ClientDetails            *ClientDetails          `json:"client_details,omitempty"`              // no use
+	Tags                     string                  `json:"tags,omitempty"`                        // no use
+	LocationId               uint64                  `json:"location_id,omitempty"`                 // deprecated
+	PaymentGatewayNames      []string                `json:"payment_gateway_names,omitempty"`       //
+	ProcessingMethod         string                  `json:"processing_method,omitempty"`           //
+	Refunds                  []Refund                `json:"refunds,omitempty"`                     // 退款信息
+	UserId                   uint64                  `json:"user_id,omitempty"`                     // no use
+	OrderStatusUrl           string                  `json:"order_status_url,omitempty"`            // no use
+	Gateway                  string                  `json:"gateway,omitempty"`                     // deprecated
+	Confirmed                bool                    `json:"confirmed,omitempty"`                   //
+	CheckoutToken            string                  `json:"checkout_token,omitempty"`              // deprecated
+	Reference                string                  `json:"reference,omitempty"`                   //
+	SourceIdentifier         string                  `json:"source_identifier,omitempty"`           // no use
+	SourceURL                string                  `json:"source_url,omitempty"`                  // no use
+	DeviceId                 uint64                  `json:"device_id,omitempty"`                   //
+	Phone                    string                  `json:"phone,omitempty"`                       // info
+	LandingSiteRef           string                  `json:"landing_site_ref,omitempty"`            //
+	CheckoutId               uint64                  `json:"checkout_id,omitempty"`                 //
+	ContactEmail             string                  `json:"contact_email,omitempty"`               //
+	Metafields               []Metafield             `json:"metafields,omitempty"`                  //
+	SendReceipt              bool                    `json:"send_receipt,omitempty"`                //
+	SendFulfillmentReceipt   bool                    `json:"send_fulfillment_receipt,omitempty"`    //
+	PresentmentCurrency      string                  `json:"presentment_currency,omitempty"`        // no use向客户显示的预付币种
+	InventoryBehaviour       orderInventoryBehaviour `json:"inventory_behaviour,omitempty"`         //
+
+	// company
+	// confirmation_number
+	// current_total_additional_fees_set
+	// current_total_duties_set
+	// current_total_price_set
+	// current_subtotal_price_set
+	// estimated_taxes
+	// merchant_of_record_app_id
+	// original_total_additional_fees_set
+	// original_total_duties_set
+	// payment_terms
+	// po_number
+	// subtotal_price_set
+	// total_line_items_price_set
+	// total_outstanding
+	// total_tip_received
 }
 
 type Address struct {
