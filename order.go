@@ -253,10 +253,9 @@ const (
 
 // Order represents a Shopify order
 type Order struct {
-	Id              uint64     `json:"id,omitempty"`               // key
-	Name            string     `json:"name,omitempty"`             // key
+	Id              uint64     `json:"id,omitempty"`               // key 用于API以及后台关联的订单ID
+	Name            string     `json:"name,omitempty"`             // key 有前缀后缀的订单号
 	OrderNumber     int        `json:"order_number,omitempty"`     // key 从1001开始的该店铺里的第n个订单
-	AppId           int        `json:"app_id,omitempty"`           // key
 	ShippingAddress *Address   `json:"shipping_address,omitempty"` //
 	LineItems       []LineItem `json:"line_items,omitempty"`       // goods_list
 
@@ -292,6 +291,7 @@ type Order struct {
 	Metafields        []Metafield            `json:"metafields,omitempty"`         // 额外信息
 
 	// --------------------------------------------------------------------------------------------------------------//
+	AppId                 int                   `json:"app_id,omitempty"`                  // no use 指的是程序的id
 	DiscountCodes         []DiscountCode        `json:"discount_codes,omitempty"`          // ？折扣
 	DiscountApplications  []DiscountApplication `json:"discount_applications,omitempty"`   // ？折扣应用
 	Transactions          []Transaction         `json:"transactions,omitempty"`            // no use
