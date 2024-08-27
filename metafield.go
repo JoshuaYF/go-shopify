@@ -84,6 +84,8 @@ const (
 	// MetafieldTypeSingleLineTextField A single line of text. Do not use for numbers or dates, use correct type instead!
 	MetafieldTypeSingleLineTextField MetafieldType = "single_line_text_field"
 
+	MetafieldTypeListSingleLineTextField MetafieldType = "list.single_line_text_field"
+
 	// MetafieldTypeURL https, http, mailto, sms, or tel.
 	MetafieldTypeURL MetafieldType = "url"
 
